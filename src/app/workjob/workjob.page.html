@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <strong> Job Details: #{{workJob?.code}} {{workJob?.description}}</strong>
+    </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button fill="solid" color="dark" *ngIf="userCode" (click)="startOver()">Clear</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <!-- job information -->
+      <ion-item lines="none">
+        <ion-label position="fixed">JOB</ion-label>
+        <ion-input [value]="workJob?.code" disabled="true"></ion-input>
+        <ion-input [value]="workJob?.description" disabled="true"></ion-input>
+      </ion-item>
+
+      <!-- user code -->
+      <!-- Inputs with labels -->
+      <ion-item lines="none">
+        <ion-label position="fixed">USER</ion-label>
+        <ion-input type="text" class="userCode" (keyup.enter)="onUserCodeChanged($event)" #userCodeInput
+          autofocus="true" placeholder="User Code">
+        </ion-input>
+        <ion-input [value]="userDescription" disabled="true"> </ion-input>
+      </ion-item>
+
+      <!-- job phase code -->
+      <ion-item lines="none">
+        <ion-label position="fixed">PHASE</ion-label>
+        <ion-input type="text" class="phaseCode" autofocus="true" #phaseCodeInput
+          (keyup.enter)="onPhaseCodeCodeChanged($event)" placeholder="Job Phase">
+        </ion-input>
+        <ion-input [value]="phaseDescription" disabled="true"> </ion-input>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-item>
+      <ion-label>
+        <ion-icon slot="start" name="star" color="danger" *ngIf="prompt !=='Processing'"></ion-icon>
+        <strong> {{prompt}}</strong>
+      </ion-label>
+    </ion-item>
+  </ion-card>
+
+
+  <ion-buttons class="bottom_cta">
+    <ion-button color="dark" fill="solid" routerLink="/home">
+      <div>
+        <ion-icon name="remove"></ion-icon>
+        <ion-text>Exit</ion-text>
+      </div>
+    </ion-button>
+  </ion-buttons>
+</ion-content>
